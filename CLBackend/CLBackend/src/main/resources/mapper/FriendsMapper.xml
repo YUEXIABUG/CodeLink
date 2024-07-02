@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codelink.clbackend.mapper.FriendsMapper">
+
+    <resultMap id="BaseResultMap" type="com.codelink.clbackend.model.domain.Friends">
+            <id property="uid" column="uid" jdbcType="BIGINT"/>
+            <result property="friendsUid" column="friendsUid" jdbcType="VARCHAR"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        uid,friendsUid,createTime
+    </sql>
+    <insert id="insertFriends">
+        insert into friends (uid, friendsUid, createTime)
+        values (#{uid,jdbcType=BIGINT}, #{friendsUid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="updateFriends">
+        update friends
+        <set>
+            <if test="friendsUid != null">
+                friendsUid = #{friendsUid,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where uid = #{uid,jdbcType=BIGINT}
+    </update>
+    <select id="getFriendsUidList" resultType="java.lang.Long">
+        select friendsUid from friends where uid = #{uid}
+
+    </select>
+</mapper>

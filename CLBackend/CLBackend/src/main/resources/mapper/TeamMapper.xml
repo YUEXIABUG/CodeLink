@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codelink.clbackend.mapper.TeamMapper">
+
+    <resultMap id="BaseResultMap" type="com.codelink.clbackend.model.domain.Team">
+            <id property="tid" column="tid" jdbcType="BIGINT"/>
+            <result property="pid" column="pid" jdbcType="BIGINT"/>
+            <result property="createUserId" column="createUserId" jdbcType="BIGINT"/>
+            <result property="usersId" column="usersId" jdbcType="VARCHAR"/>
+            <result property="teamAvatar" column="teamAvatar" jdbcType="VARCHAR"/>
+            <result property="isPersonal" column="isPersonal" jdbcType="TINYINT"/>
+            <result property="teamPassword" column="teamPassword" jdbcType="VARCHAR"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="deleteTime" column="deleteTime" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+            <result property="isFull" column="isFull" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        tid,pid,createUserId,
+        usersId,teamAvatar,isPersonal,
+        teamPassword,createTime,updateTime,
+        deleteTime,isDelete,isFull
+    </sql>
+</mapper>

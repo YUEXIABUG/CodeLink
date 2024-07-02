@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codelink.clbackend.mapper.ProjectMapper">
+
+    <resultMap id="BaseResultMap" type="com.codelink.clbackend.model.domain.Project">
+            <id property="pid" column="pid" jdbcType="BIGINT"/>
+            <result property="createUserId" column="createUserId" jdbcType="BIGINT"/>
+            <result property="tid" column="tid" jdbcType="BIGINT"/>
+            <result property="projectName" column="projectName" jdbcType="VARCHAR"/>
+            <result property="projectDes" column="projectDes" jdbcType="VARCHAR"/>
+            <result property="projectTags" column="projectTags" jdbcType="VARCHAR"/>
+            <result property="needTags" column="needTags" jdbcType="VARCHAR"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="isFinish" column="isFinish" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        pid,createUserId,tid,
+        projectName,projectDes,projectTags,
+        needTags,createTime,isFinish
+    </sql>
+    <select id="getProjectList" resultType="com.codelink.clbackend.model.domain.Project">
+        select
+        <include refid="Base_Column_List"/>
+        from project
+        where createUserId = #{createUserId}
+    </select>
+</mapper>

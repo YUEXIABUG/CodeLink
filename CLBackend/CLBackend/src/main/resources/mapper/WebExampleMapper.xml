@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codelink.clbackend.mapper.WebExampleMapper">
+
+    <resultMap id="BaseResultMap" type="com.codelink.clbackend.model.domain.WebExample">
+            <id property="wid" column="wid" jdbcType="BIGINT"/>
+            <result property="webname" column="webname" jdbcType="VARCHAR"/>
+            <result property="webDesc" column="webDesc" jdbcType="VARCHAR"/>
+            <result property="webSite" column="webSite" jdbcType="VARCHAR"/>
+            <result property="webPic" column="webPic" jdbcType="VARCHAR"/>
+            <result property="webDownloadSite" column="webDownloadSite" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        wid,webname,webDesc,
+        webSite,webPic,webDownloadSite
+    </sql>
+</mapper>

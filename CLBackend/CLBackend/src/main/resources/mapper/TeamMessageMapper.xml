@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codelink.clbackend.mapper.TeamMessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.codelink.clbackend.model.domain.TeamMessage">
+            <id property="nid" column="nid" jdbcType="BIGINT"/>
+            <result property="recipientUid" column="recipientUid" jdbcType="BIGINT"/>
+            <result property="tid" column="tid" jdbcType="BIGINT"/>
+            <result property="createUserId" column="createUserId" jdbcType="BIGINT"/>
+            <result property="applyUserId" column="applyUserId" jdbcType="BIGINT"/>
+            <result property="applyMessage" column="applyMessage" jdbcType="TINYINT"/>
+            <result property="quitMessage" column="quitMessage" jdbcType="TINYINT"/>
+            <result property="breakMessage" column="breakMessage" jdbcType="TINYINT"/>
+            <result property="finishedMessage" column="FinishedMessage" jdbcType="TINYINT"/>
+            <result property="isRead" column="isRead" jdbcType="TINYINT"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        nid,recipientUid,tid,
+        createUserId,applyUserId,applyMessage,
+        quitMessage,breakMessage,FinishedMessage,
+        isRead,remark,createTime
+    </sql>
+    <select id="getTeamMessagesList" resultType="com.codelink.clbackend.DTO.teamMessagesListDTO">
+        SELECT nid, recipientUid, tid, createUserId, applyUserId, applyMessage, quitMessage, breakMessage, FinishedMessage, isRead, remark, createTime
+        FROM team_message
+        WHERE recipientUid = #{uid}
+    </select>
+    <select id="selectByApplyUserIdAndTid" resultType="com.codelink.clbackend.model.domain.TeamMessage">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM team_message
+        WHERE applyUserId = #{uid} AND tid = #{tid} AND applyMessage = #{applyMessage}
+    </select>
+    <select id="selectByRecipientUid" resultType="com.codelink.clbackend.model.domain.TeamMessage">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM team_message
+        WHERE recipientUid = #{uid}
+    </select>
+    <select id="selectByRecipientUidAndIsRead" resultType="com.codelink.clbackend.model.domain.TeamMessage">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM team_message
+        WHERE recipientUid = #{uid} AND isRead = #{isRead}
+    </select>
+</mapper>
